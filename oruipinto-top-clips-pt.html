@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Os clips mais vistos do oruipinto na Twitch, num Top 10 para cada categoria.">
+<title>oruipinto – Top 10 de clips da Twitch por categoria</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%239146ff'/%3E%3Cpath d='M24 18l22 14-22 14z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0d0a17;
+  --surface:#16112a;
+  --raised:#1f1838;
+  --line:#32285a;
+  --accent:#9146ff;
+  --accent-soft:#bf94ff;
+  --text:#f1edfc;
+  --muted:#a79fc2;
+  --faint:#8a82a6;
+  --font:"Inter","Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:var(--font);
+  color:var(--text);
+  background:
+    radial-gradient(900px 500px at 85% -120px, rgba(145,70,255,.28), transparent 70%),
+    radial-gradient(700px 420px at -10% 20%, rgba(92,22,197,.22), transparent 70%),
+    var(--bg);
+  background-repeat:no-repeat;
+  line-height:1.5;
+  padding-left:env(safe-area-inset-left);
+  padding-right:env(safe-area-inset-right);
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent-soft);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+
+/* top bar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:-.02em;font-size:1.1rem}
+.brand .mark{width:34px;height:34px;border-radius:9px;background:var(--accent);display:grid;place-items:center}
+.brand .mark svg{width:16px;height:16px;fill:#fff;margin-left:2px}
+.live{
+  text-decoration:none;font-weight:700;font-size:.9rem;padding:9px 16px;border-radius:10px;
+  background:var(--accent);color:#fff;white-space:nowrap
+}
+.live:hover{background:#a470ff}
+
+/* hero */
+.hero{display:grid;gap:36px;padding-block:28px 44px;align-items:center}
+@media(min-width:960px){.hero{grid-template-columns:1.25fr 1fr;padding-block:48px 64px}}
+.hero h1{
+  margin:0;font-size:clamp(3.2rem,11vw,6.6rem);line-height:.92;letter-spacing:-.045em;font-weight:900;
+  background:linear-gradient(100deg,#fff 10%,var(--accent-soft) 70%,var(--accent));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  padding-bottom:.08em;
+}
+.hero .sub{margin:10px 0 0;font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--text);font-weight:600;letter-spacing:-.01em}
+.hero .intro{margin:16px 0 0;max-width:56ch;color:var(--muted);font-size:1.02rem}
+.stats{display:flex;flex-wrap:wrap;gap:0;margin:28px 0 0;padding:0;list-style:none}
+.stats li{padding:2px 24px 2px 0;margin-right:24px;border-right:1px solid var(--line)}
+.stats li:last-child{border-right:0;margin-right:0;padding-right:0}
+.stats b{display:block;font-size:1.7rem;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stats span{font-size:.85rem;color:var(--faint)}
+
+.feature{
+  display:block;text-decoration:none;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  background:var(--surface);box-shadow:0 30px 80px -30px rgba(145,70,255,.55);
+}
+.feature:hover{border-color:var(--accent)}
+.feature .art{
+  aspect-ratio:16/8;position:relative;display:grid;place-items:center;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,.18), transparent 45%),
+    linear-gradient(135deg,hsl(268 78% 40%),hsl(288 80% 18%));
+}
+.feature .tag{
+  position:absolute;left:14px;top:14px;background:rgba(13,10,23,.7);backdrop-filter:blur(6px);
+  padding:6px 12px;border-radius:999px;font-size:.8rem;font-weight:700
+}
+.play{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center}
+.play svg{width:24px;height:24px;fill:var(--accent);margin-left:3px}
+.feature .info{padding:18px 20px 20px}
+.feature h2{margin:0;font-size:1.25rem;letter-spacing:-.01em;line-height:1.25;overflow-wrap:anywhere}
+.feature .row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:14px}
+
+/* shared bits */
+.views{
+  display:inline-flex;align-items:center;gap:7px;padding:5px 12px 5px 10px;border-radius:999px;
+  background:rgba(145,70,255,.2);color:var(--accent-soft);font-weight:800;font-variant-numeric:tabular-nums;
+  border:1px solid rgba(191,148,255,.28)
+}
+.views svg{width:16px;height:16px;fill:currentColor;flex:none}
+.views small{font-weight:600;font-size:.78rem;opacity:.85}
+.chip-cat{font-size:.8rem;color:var(--muted);font-weight:600}
+.date{font-size:.82rem;color:var(--faint);font-variant-numeric:tabular-nums}
+
+/* toolbar */
+.toolbar{
+  position:sticky;top:0;z-index:20;
+  padding:calc(12px + env(safe-area-inset-top)) 0 12px;
+  background:rgba(13,10,23,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.search{position:relative;max-width:560px}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:var(--faint);pointer-events:none}
+.search input{
+  width:100%;font:inherit;font-size:1rem;color:var(--text);background:var(--surface);
+  border:1px solid var(--line);border-radius:12px;padding:12px 44px 12px 42px;
+}
+.search input::placeholder{color:var(--faint)}
+.search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(145,70,255,.35)}
+.search .clear{
+  position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--muted);
+  width:34px;height:34px;border-radius:8px;font-size:1.3rem;cursor:pointer;display:none
+}
+.search .clear.on{display:block}
+.chips{
+  display:flex;gap:8px;overflow-x:auto;padding:12px 2px 2px;margin:0 -2px;
+  scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--line) transparent;
+}
+.chip{
+  flex:none;scroll-snap-align:start;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;
+  color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 14px;
+  display:inline-flex;gap:8px;align-items:center;white-space:nowrap
+}
+.chip b{font-weight:700;font-size:.78rem;background:var(--raised);color:var(--accent-soft);border-radius:999px;padding:1px 8px;font-variant-numeric:tabular-nums}
+.chip:hover{border-color:var(--accent);color:var(--text)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip[aria-pressed="true"] b{background:rgba(255,255,255,.22);color:#fff}
+.chip:disabled{opacity:.4;cursor:not-allowed}
+.status{margin:14px 0 0;color:var(--muted);font-size:.9rem}
+
+/* sections */
+#library{padding-block:12px 24px}
+.cat{padding:40px 0 8px;scroll-margin-top:170px}
+.cat-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px 20px;margin-bottom:18px;
+  padding-bottom:14px;border-bottom:1px solid var(--line)}
+.cat h2{margin:0;font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-.03em;font-weight:800;line-height:1.1}
+.cat .note{margin:6px 0 0;color:var(--muted);font-size:.92rem}
+.cat .best{margin:0;color:var(--faint);font-size:.88rem}
+.cat .best b{color:var(--accent-soft);font-variant-numeric:tabular-nums}
+
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(100%,255px),1fr))}
+.card{
+  display:flex;flex-direction:column;text-decoration:none;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .15s;
+}
+.card:hover{border-color:var(--accent)}
+.thumb{
+  position:relative;aspect-ratio:16/8;overflow:hidden;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255,255,255,.16), transparent 50%),
+    linear-gradient(135deg,hsl(var(--h) 74% 36%),hsl(calc(var(--h) + 24) 78% 15%));
+}
+.thumb .big{
+  position:absolute;right:-6px;bottom:-26px;font-size:7.5rem;font-weight:900;letter-spacing:-.06em;line-height:1;
+  color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.18);user-select:none
+}
+.thumb .rank{
+  position:absolute;left:12px;top:12px;min-width:38px;text-align:center;padding:4px 10px;border-radius:8px;
+  background:rgba(13,10,23,.78);font-weight:800;font-size:.95rem;font-variant-numeric:tabular-nums
+}
+.card.first .rank{background:var(--accent)}
+.thumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:48px;height:48px}
+.thumb .play svg{width:19px;height:19px}
+.thumb .ext{position:absolute;right:12px;top:12px;width:30px;height:30px;border-radius:8px;background:rgba(13,10,23,.78);display:grid;place-items:center}
+.thumb .ext svg{width:14px;height:14px;fill:#fff}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:12px;flex:1}
+.title{
+  margin:0;font-size:1rem;font-weight:700;line-height:1.35;letter-spacing:-.005em;overflow-wrap:anywhere;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(1.35em * 2)
+}
+.meta{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.meta .line{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+.empty{display:none;text-align:center;padding:72px 16px;color:var(--muted)}
+.empty.on{display:block}
+.empty h2{margin:0 0 8px;color:var(--text);font-size:1.4rem;letter-spacing:-.02em}
+.empty button{margin-top:16px;font:inherit;font-weight:700;color:#fff;background:var(--accent);border:0;border-radius:10px;padding:10px 18px;cursor:pointer}
+
+/* about */
+.about{margin-top:48px;border-top:1px solid var(--line);padding-block:40px 56px}
+.about h2{margin:0 0 20px;font-size:1.5rem;letter-spacing:-.025em}
+.facts{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.facts div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.facts h3{margin:0 0 6px;font-size:1rem;letter-spacing:-.01em}
+.facts p{margin:0;color:var(--muted);font-size:.93rem}
+.facts a{color:var(--accent-soft)}
+.foot{margin-top:28px;color:var(--faint);font-size:.85rem}
+
+@media(max-width:560px){
+  .wrap{padding:0 16px}
+  .top{padding-block:14px}
+  .stats li{padding-right:16px;margin-right:16px}
+  .thumb .big{font-size:6rem}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="wrap top">
+  <a class="brand" href="#top" id="top" aria-label="Biblioteca de clips do oruipinto">
+    <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z"/></svg></span>
+    <span>clips do oruipinto</span>
+  </a>
+  <a class="live" href="https://www.twitch.tv/oruipinto" target="_blank" rel="noopener noreferrer">Ver o canal na Twitch</a>
+</header>
+
+<main>
+  <section class="wrap hero" aria-labelledby="hero-title">
+    <div>
+      <h1 id="hero-title">oruipinto</h1>
+      <p class="sub">Os melhores clips do canal, ordenados por categoria.</p>
+      <p class="intro">Um Top 10 para cada categoria que o oruipinto já transmitiu, de 1 de novembro de 2025 a 15 de novembro de 2026. Pesquise por título, salte para uma categoria e clique em qualquer cartão para ver o clip original na Twitch.</p>
+      <ul class="stats" id="stats" aria-label="Totais da biblioteca"></ul>
+    </div>
+    <a class="feature" id="feature" href="#" target="_blank" rel="noopener noreferrer"></a>
+  </section>
+
+  <div class="toolbar" id="library-bar">
+    <div class="wrap">
+      <div class="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105.3 14l5.4 5.4 1.4-1.4-5.4-5.4A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
+        <input id="q" type="search" placeholder="Pesquisar clips por título" aria-label="Pesquisar clips por título" autocomplete="off" spellcheck="false">
+        <button class="clear" id="clear" type="button" aria-label="Limpar pesquisa">&times;</button>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por categoria"></div>
+    </div>
+  </div>
+
+  <div class="wrap" id="library">
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+    <div id="sections"></div>
+    <div class="empty" id="empty">
+      <h2>Nenhum clip corresponde à pesquisa</h2>
+      <p>Experimente um título mais curto, verifique a ortografia ou mude de categoria.</p>
+      <button type="button" id="reset">Limpar pesquisa e filtros</button>
+    </div>
+  </div>
+
+  <section class="wrap about" aria-labelledby="about-title">
+    <h2 id="about-title">De onde vêm os dados</h2>
+    <div class="facts">
+      <div>
+        <h3>Fonte</h3>
+        <p>Os títulos, categorias, visualizações, datas e ligações da Twitch vêm do índice de clips do canal no <a href="https://www.twitchmetrics.net/c/62789124-oruipinto/clips" target="_blank" rel="noopener noreferrer">Twitchmetrics</a>, consultado a 16 de novembro de 2026. O ClipsGameLab carrega os dados com JavaScript, por isso não foi possível ler diretamente a sua lista de clips.</p>
+      </div>
+      <div>
+        <h3>Como os clips foram escolhidos</h3>
+        <p>Todos os clips datados de 1 nov 2025 a 15 nov 2026 (UTC) foram agrupados pela categoria da Twitch, ordenados por visualizações e limitados aos 10 primeiros. As categorias com menos de 10 clips mostram tudo o que existe.</p>
+      </div>
+      <div>
+        <h3>O que não está incluído</h3>
+        <p>O Twitchmetrics lista cerca de 250 clips deste canal e não inclui todos os que existem. Os clips que faltam nesse índice (por exemplo, clips de Minecraft de novembro de 2025) não aparecem porque não foi possível verificar as visualizações e as ligações.</p>
+      </div>
+      <div>
+        <h3>Datas e visualizações</h3>
+        <p>O Twitchmetrics mostra as datas sem ano. O ano foi deduzido a partir do dia da semana indicado. O símbolo <span title="Ano deduzido a partir do dia da semana indicado pela fonte">†</span> assinala os poucos clips cujo ano depende apenas desse dia da semana. As visualizações são um retrato do momento e continuam a crescer na Twitch.</p>
+      </div>
+    </div>
+    <p class="foot">Biblioteca não oficial, feita por fãs. Sem qualquer ligação à Twitch ou ao oruipinto. Os títulos dos clips aparecem exatamente como foram publicados na Twitch.</p>
+  </section>
+</main>
+
+<script>
+/* c = Twitch category, t = clip title, v = views, d = date (UTC), s = Twitch clip slug, y = 1 when the year was inferred from the weekday only */
+const CLIPS = [
+ {c:"Counter-Strike",t:"JADE CANHAO / MICAEL ALMEIDA",v:2036,d:"2026-08-31",s:"SuspiciousCoyMarrowOSsloth-q0eLd2sFpWS-fj_J",y:1},
+ {c:"Counter-Strike",t:"LEGENDBOY ESTA FOI PRA TI MERMAO",v:1070,d:"2026-01-21",s:"LongPoisedPlumberCoolStoryBob-l_Fr8nDBKaPbdyMA"},
+ {c:"Counter-Strike",t:"LOL",v:1063,d:"2026-08-23",s:"EnticingTrustworthyLouseCoolCat-rRFKIqGHyTH6ObbI",y:1},
+ {c:"Counter-Strike",t:"nada suicidio",v:566,d:"2026-05-30",s:"ViscousFreezingTildeHassanChop-KHDAnzmLcqCUn_e7",y:1},
+ {c:"Counter-Strike",t:"\"neidaram fork\" tive que sair",v:512,d:"2026-08-03",s:"MagnificentSavoryAsparagusMikeHogu-L1EU6sl8G1K6jZ1-"},
+
+ {c:"EA Sports FC 26",t:"aqui é golaço",v:1492,d:"2025-11-03",s:"GlamorousNastyFerretOSsloth-Ql8IAEk3f_uBxiBC"},
+
+ {c:"Just Chatting",t:"kkkkkkkk",v:622,d:"2026-03-08",s:"BelovedFrigidOtterNomNom-6DtO3n9JRvCmonSM",y:1},
+ {c:"Just Chatting",t:"VAR",v:552,d:"2026-10-26",s:"LovelyGloriousZebraPlanking-U8VQn0AIco4JNSKI"},
+ {c:"Just Chatting",t:"ahahahahahaha",v:546,d:"2026-09-02",s:"BlueStormyBobaRedCoat-Uv1ljLRU1x1AlLuD",y:1},
+ {c:"Just Chatting",t:"AURA LUISA",v:506,d:"2026-04-12",s:"AmericanWildEggnogM4xHeh-BMVQuremNsTWYMHy",y:1},
+ {c:"Just Chatting",t:"you dont have lights (racism)",v:393,d:"2026-11-08",s:"PluckyBlatantSrirachaPMSTwin-i51RPbKXhGOO-88z"},
+ {c:"Just Chatting",t:"BARRACO SHOW | ÚLTIMO A CHEGAR",v:259,d:"2026-10-25",s:"CoweringCalmVanillaSwiftRage-6P3SHa_DeASC94RX"},
+ {c:"Just Chatting",t:"bandeira da romenia",v:242,d:"2026-10-18",s:"BreakablePeacefulJellyfishPMSTwin-YOPsqbs12j9kFQgK"},
+ {c:"Just Chatting",t:"oi",v:189,d:"2026-10-25",s:"RacyLightNoodlePanicVis-VjgeTfXyHuoB_Gak"},
+ {c:"Just Chatting",t:"BARRACO SHOW | ÚLTIMO A CHEGAR",v:188,d:"2026-10-26",s:"BrainyLazyCockroachMikeHogu-EGDt10PWDWl92xoo"},
+ {c:"Just Chatting",t:"BARRACO SHOW ULTIMO A CHEGAR DOMINGO",v:173,d:"2026-10-23",s:"KitschyPuzzledRabbitSoBayed-ZA0XZGhtdnQqUHmt"},
+
+ {c:"EA Sports FC 27",t:"AHAHAHAHAAH",v:505,d:"2026-10-03",s:"SmoggySavageHedgehogRlyTho-kyM7YTVW8dl-WRwT"},
+ {c:"EA Sports FC 27",t:"AL-QATRAO 21:45 PRIMEIRA JORNADA DO CAMPEONATO | ULTIMA LIVE DA SEMANA",v:252,d:"2026-10-26",s:"ObliqueRepletePistachioPJSalt-TW5B22mWiyvkjwqY"},
+ {c:"EA Sports FC 27",t:"INSCREVE-TE NO PROXIMO BARRACO SHOW !forms",v:199,d:"2026-10-13",s:"PatientStylishGullSpicyBoy-Y6eqhDbYd1_CE7JC"},
+ {c:"EA Sports FC 27",t:"AL-QATRAO 21:45 PRIMEIRA JORNADA DO CAMPEONATO | ULTIMA LIVE DA SEMANA",v:181,d:"2026-10-26",s:"StrangePreciousPonySquadGoals-Nw90doOoCr6G8dlK"},
+ {c:"EA Sports FC 27",t:"amote",v:119,d:"2026-10-20",s:"NeighborlySavageStrawberryHeyGuys-xzglgmAtttk9JjbY"},
+ {c:"EA Sports FC 27",t:"INSCREVE-TE NO PROXIMO BARRACO SHOW !forms",v:103,d:"2026-10-14",s:"DeafHonorablePeanutBabyRage-iEunR54jDLxvVv8C"},
+ {c:"EA Sports FC 27",t:"AL-QATRAO LIGA PORTUGUESA 21:45 | the floor domingo !inscrição",v:101,d:"2026-11-10",s:"ExpensivePlainSwanDoritosChip-ELaRd-nbthSvBXXU"},
+ {c:"EA Sports FC 27",t:"...",v:97,d:"2026-10-21",s:"OutstandingCharmingTortoiseUWot-3NOnl6dHzqOzaXDS"},
+ {c:"EA Sports FC 27",t:"AL-QATRAO LIGA PORTUGUESA 21:45 | the floor domingo inscricoes em breve",v:90,d:"2026-11-09",s:"GiftedSpookyLasagnaRitzMitz-n7-7m77XY7mT6xt4"},
+ {c:"EA Sports FC 27",t:"AL-QATRAO 21:45 | !youtube",v:86,d:"2026-11-02",s:"PlausibleHotHippoPhilosoraptor-OhwqlL6H2t56rcil"},
+
+ {c:"ROB RUN",t:"DOMINGO : GOT TALENT | !youtube",v:362,d:"2026-11-07",s:"AwkwardConcernedDogePartyTime-YMGPOUQiuz3E_1DZ"},
+ {c:"ROB RUN",t:"THE FLOOR domingo !inscrição",v:326,d:"2026-11-11",s:"SingleRefinedGoosePhilosoraptor-C2ma2hyD_W0ISSkE"},
+ {c:"ROB RUN",t:"DOMINGO : GOT TALENT | !youtube",v:240,d:"2026-11-08",s:"ComfortableFrailNoodleCorgiDerp-yaiMFYJ4G_6wPCpi"},
+ {c:"ROB RUN",t:"THE FLOOR domingo !inscrição",v:167,d:"2026-11-11",s:"ProudHealthyMetalThisIsSparta-m3O-JWrA8UYyXSZC"},
+ {c:"ROB RUN",t:"THE FLOOR domingo !inscrição",v:155,d:"2026-11-12",s:"ExuberantPoisedChickenEleGiggle-FaZBRCxRhsXNnPx2"},
+ {c:"ROB RUN",t:"DOMINGO : GOT TALENT | !youtube",v:137,d:"2026-11-06",s:"YummyInventiveCougarChefFrank-dFhoHU1F1zOLKsjB"},
+ {c:"ROB RUN",t:"DOMINGO : GOT TALENT | !youtube",v:134,d:"2026-11-07",s:"EphemeralTangentialPangolinTakeNRG-pUG2IW_0w9-0bX_M"},
+ {c:"ROB RUN",t:"THE FLOOR domingo !inscrição",v:129,d:"2026-11-11",s:"WonderfulCleverTermiteOSsloth-uh9weDZIvyRMC9UY"},
+ {c:"ROB RUN",t:"AL-QATRAO LIGA PORTUGUESA 21:45 | the floor domingo inscricoes em breve",v:119,d:"2026-11-10",s:"TalentedCheerfulOrcaAliens-2ml1yC2O36sWLBGU"},
+ {c:"ROB RUN",t:"DOMINGO : GOT TALENT | !youtube",v:90,d:"2026-11-08",s:"SpikySlickLocustPhilosoraptor-807FwoinWroeDV7R"},
+
+ {c:"$cam With Your Friends",t:"UI ??",v:212,d:"2026-10-21",s:"SpookyJollyWormLeeroyJenkins-AFflftmnkC16y6tO"},
+ {c:"$cam With Your Friends",t:"...",v:69,d:"2026-10-21",s:"EnticingCogentAmazonKappaClaus-l7KA1_NkfVPqFJEQ"},
+ {c:"$cam With Your Friends",t:"...",v:56,d:"2026-10-21",s:"VivaciousDifficultAntAMPEnergy-gJzQwNTI44rP0UoV"},
+ {c:"$cam With Your Friends",t:"...",v:33,d:"2026-10-21",s:"VenomousCorrectTeaLitty-qeGZtOi64tMVgGBR"},
+ {c:"$cam With Your Friends",t:"...",v:33,d:"2026-10-21",s:"CautiousSolidPangolinWholeWheat-dj2vEMtR7bkOT9TI"},
+
+ {c:"Scape",t:"#PUB Scape !drops !scape",v:101,d:"2026-10-19",s:"BoringElegantPicklesTBTacoLeft-gUPaEFdiK1AzR_aq"},
+ {c:"Scape",t:"#PUB Scape !drops !scape",v:42,d:"2026-10-19",s:"SmoggyAmericanHamResidentSleeper-8-8I7DXFSoKoeOE4"},
+
+ {c:"Football Manager 27",t:"AL-QATRAO 21:45 | !youtube",v:86,d:"2026-11-03",s:"CrispySullenMagePeteZaroll-rldBHQAzNOlRt7UR"},
+ {c:"Football Manager 27",t:"AL-QATRAO 21:45 | !youtube",v:70,d:"2026-11-02",s:"CoweringResourcefulGoldfishCurseLit-1Y-dT520pNMrtgYD"},
+
+ {c:"CRACK",t:"AL-QATRAO 21:45 PRIMEIRA JORNADA DO CAMPEONATO | ULTIMA LIVE DA SEMANA",v:48,d:"2026-10-27",s:"IncredulousFaintMarrowLitFam-5xgFKfn0B0WJzOvu"},
+
+ {c:"Invokyr",t:"AL-QATRAO 21:45 PRIMEIRA JORNADA DO CAMPEONATO | ULTIMO DIA DE LIVE DA SEMANA",v:40,d:"2026-10-26",s:"CleanSpotlessButterflyJKanStyle-nT12UZ3SgzHWjIPr"},
+ {c:"Invokyr",t:"BARRACO SHOW ULTIMO A CHEGAR DOMINGO",v:34,d:"2026-10-23",s:"JollyOpenOtterBibleThump-J44zzrLh1puO9BE1"}
+];
+
+const TOP_N = 10;
+const HUES = [268, 292, 252, 306, 240, 322, 278, 258, 300, 246];
+const fmtDate = new Intl.DateTimeFormat("pt-PT",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
+const fmtNum = n => n.toLocaleString("pt-PT");
+const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const NS = "http://www.w3.org/2000/svg";
+
+/* Group by category, rank by views, keep the top 10 */
+const groups = {};
+CLIPS.forEach(c => (groups[c.c] = groups[c.c] || []).push(c));
+const cats = Object.keys(groups).map(name => {
+  const list = groups[name].slice().sort((a,b)=>b.v-a.v).slice(0,TOP_N).map((c,i)=>({...c,rank:i+1}));
+  return {name, list, best:list[0].v, id:"cat-"+norm(name).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")};
+}).sort((a,b)=>b.best-a.best);
+cats.forEach((c,i)=>c.hue = HUES[i % HUES.length]);
+const all = cats.flatMap(c=>c.list);
+const url = c => "https://clips.twitch.tv/" + c.s;
+
+const state = {q:"", cat:"all"};
+const $ = id => document.getElementById(id);
+
+function el(tag, cls, text){
+  const n = document.createElement(tag);
+  if(cls) n.className = cls;
+  if(text !== undefined) n.textContent = text;
+  return n;
+}
+function svg(path, vb){
+  const s = document.createElementNS(NS,"svg");
+  s.setAttribute("viewBox", vb || "0 0 24 24");
+  s.setAttribute("aria-hidden","true");
+  const p = document.createElementNS(NS,"path");
+  p.setAttribute("d", path);
+  s.appendChild(p);
+  return s;
+}
+const PLAY = "M7 4l14 8-14 8z";
+const EYE = "M12 5C6.5 5 2.7 9 1.5 12c1.2 3 5 7 10.5 7s9.300-4 10.500-7C21.300 9 17.500 5 12 5zm0 11.500A4.500 4.500 0 1112 7.500a4.500 4.500 0 010 9zm0-7a2.500 2.500 0 100 5 2.500 2.500 0 000-5z";
+const EXT = "M14 3h7v7h-2V6.400l-8.300 8.300-1.400-1.400L17.600 5H14V3zM5 5h6v2H5v12h12v-6h2v8H3V5h2z";
+
+function dateNode(c){
+  const d = el("span","date", fmtDate.format(new Date(c.d+"T00:00:00Z")));
+  if(c.y){
+    const m = el("span",null,"\u2020");
+    m.title = "Ano deduzido a partir do dia da semana indicado pela fonte";
+    d.appendChild(m);
+  }
+  return d;
+}
+function viewsNode(v){
+  const n = el("span","views");
+  n.appendChild(svg(EYE));
+  n.appendChild(document.createTextNode(fmtNum(v)));
+  n.appendChild(el("small",null,v===1?"visualização":"visualizações"));
+  return n;
+}
+
+function card(c, hue){
+  const a = el("a","card"+(c.rank===1?" first":""));
+  a.href = url(c);
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.setAttribute("aria-label", `#${c.rank} em ${c.c}: ${c.t}, ${fmtNum(c.v)} visualizações. Abre na Twitch.`);
+
+  const th = el("div","thumb");
+  th.style.setProperty("--h", hue);
+  th.appendChild(el("span","big","#"+c.rank));
+  th.appendChild(el("span","rank","#"+c.rank));
+  const pl = el("span","play"); pl.appendChild(svg(PLAY)); th.appendChild(pl);
+  const ex = el("span","ext"); ex.appendChild(svg(EXT)); th.appendChild(ex);
+  a.appendChild(th);
+
+  const body = el("div","body");
+  const h = el("h3","title",c.t); h.title = c.t;
+  body.appendChild(h);
+  const meta = el("div","meta");
+  const l1 = el("div","line");
+  l1.appendChild(viewsNode(c.v));
+  l1.appendChild(dateNode(c));
+  meta.appendChild(l1);
+  meta.appendChild(el("span","chip-cat",c.c));
+  body.appendChild(meta);
+  a.appendChild(body);
+  return a;
+}
+
+function matches(c){
+  return !state.q || norm(c.t).includes(state.q);
+}
+
+function renderChips(){
+  const box = $("chips");
+  box.textContent = "";
+  const mk = (label, count, key) => {
+    const b = el("button","chip");
+    b.type = "button";
+    b.setAttribute("aria-pressed", String(state.cat===key));
+    b.appendChild(document.createTextNode(label));
+    b.appendChild(el("b",null,String(count)));
+    if(count===0 && state.cat!==key) b.disabled = true;
+    b.addEventListener("click",()=>{ state.cat = key; render(); jumpToLibrary(); });
+    box.appendChild(b);
+  };
+  mk("Todas as categorias", all.filter(matches).length, "all");
+  cats.forEach(c => mk(c.name, c.list.filter(matches).length, c.name));
+}
+
+function render(){
+  renderChips();
+  const wrap = $("sections");
+  wrap.textContent = "";
+  let shown = 0, shownCats = 0;
+
+  cats.forEach(cat=>{
+    if(state.cat!=="all" && state.cat!==cat.name) return;
+    const list = cat.list.filter(matches);
+    if(!list.length) return;
+    shown += list.length; shownCats++;
+
+    const sec = el("section","cat"); sec.id = cat.id;
+    sec.setAttribute("aria-labelledby", cat.id+"-h");
+    const head = el("div","cat-head");
+    const left = el("div");
+    const h2 = el("h2",null,cat.name); h2.id = cat.id+"-h";
+    left.appendChild(h2);
+    const total = cat.list.length;
+    let note = total < TOP_N
+      ? (total===1 ? "Só existe 1 clip neste período, por isso é mostrado" : `Só existem ${total} clips neste período, por isso são todos mostrados`)
+      : `Top ${TOP_N} por visualizações`;
+    if(list.length !== total) note = `A mostrar ${list.length} de ${total} clips`;
+    left.appendChild(el("p","note",note));
+    head.appendChild(left);
+    const best = el("p","best","Melhor clip: ");
+    best.appendChild(el("b",null,fmtNum(cat.best)+" visualizações"));
+    head.appendChild(best);
+    sec.appendChild(head);
+
+    const grid = el("div","grid");
+    list.forEach(c=>grid.appendChild(card(c, cat.hue)));
+    sec.appendChild(grid);
+    wrap.appendChild(sec);
+  });
+
+  const empty = shown===0;
+  $("empty").classList.toggle("on", empty);
+  const base = `${shown} clip${shown===1?"":"s"} em ${shownCats} categoria${shownCats===1?"":"s"}`;
+  $("status").textContent = state.q ? `${base} ${shown===1?"corresponde":"correspondem"} a \u201C${$("q").value.trim()}\u201D` : base;
+  $("clear").classList.toggle("on", $("q").value.length>0);
+}
+
+function jumpToLibrary(){
+  const bar = $("library-bar");
+  const target = $("library").getBoundingClientRect().top + window.scrollY - bar.offsetHeight;
+  if(window.scrollY > target){
+    window.scrollTo({top: target, behavior:"smooth"});
+  }
+}
+
+/* Hero: stats + most viewed clip in the library */
+function renderHero(){
+  const total = all.reduce((s,c)=>s+c.v,0);
+  const stats = $("stats");
+  [[cats.length,"categorias"],[all.length,"clips ordenados"],[fmtNum(total),"visualizações somadas"]].forEach(([n,l])=>{
+    const li = el("li"); li.appendChild(el("b",null,String(n))); li.appendChild(el("span",null,l)); stats.appendChild(li);
+  });
+
+  const top = all.slice().sort((a,b)=>b.v-a.v)[0];
+  const f = $("feature");
+  f.href = url(top);
+  f.setAttribute("aria-label", `Clip mais visto: ${top.t}, ${fmtNum(top.v)} visualizações. Abre na Twitch.`);
+  const art = el("div","art");
+  art.appendChild(el("span","tag","Clip mais visto da biblioteca"));
+  const pl = el("span","play"); pl.appendChild(svg(PLAY)); art.appendChild(pl);
+  f.appendChild(art);
+  const info = el("div","info");
+  info.appendChild(el("h2",null,top.t));
+  const row = el("div","row");
+  row.appendChild(viewsNode(top.v));
+  row.appendChild(el("span","chip-cat",top.c));
+  row.appendChild(dateNode(top));
+  info.appendChild(row);
+  f.appendChild(info);
+}
+
+/* Events */
+let timer;
+$("q").addEventListener("input", e=>{
+  clearTimeout(timer);
+  timer = setTimeout(()=>{ state.q = norm(e.target.value.trim()); render(); }, 80);
+  $("clear").classList.toggle("on", e.target.value.length>0);
+});
+$("clear").addEventListener("click", ()=>{ $("q").value=""; state.q=""; render(); $("q").focus(); });
+$("reset").addEventListener("click", ()=>{ $("q").value=""; state.q=""; state.cat="all"; render(); });
+
+renderHero();
+render();
+</script>
+</body>
+</html>
